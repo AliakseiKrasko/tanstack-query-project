@@ -21,10 +21,6 @@ function App() {
 
 const PlayLists = () => {
     const query = useQuery({
-        staleTime: 2000,
-        refetchOnMount: false,
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
         queryKey: ['playlist'],
         queryFn: () => client.GET('/playlists')
 
