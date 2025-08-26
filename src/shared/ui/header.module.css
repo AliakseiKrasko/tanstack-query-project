@@ -1,0 +1,33 @@
+.header {
+    background-color: #1e1e1e; /* тёмный фон */
+    color: #fff;
+    padding: 12px 24px;
+    border-bottom: 1px solid #333;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.linksBlock {
+    display: flex;
+    gap: 20px;
+}
+
+.linksBlock a {
+    color: #bbb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.linksBlock a:hover,
+.linksBlock a[data-status='active'] {
+    color: #fff;
+    border-bottom: 2px solid #4cafef;
+    padding-bottom: 2px;
+}
