@@ -1,4 +1,4 @@
-import {useQuery} from "@tanstack/react-query";
+import {keepPreviousData, useQuery} from "@tanstack/react-query";
 
 export const PlayLists = () => {
     const [page, setPage] = useState(1);
@@ -17,7 +17,8 @@ export const PlayLists = () => {
             throw (response as unknown as {error: Error}).error;
         }
         return response.data;
-    }
+    },
+        placeholderData: keepPreviousData
 })
 
 
@@ -25,6 +26,7 @@ export const PlayLists = () => {
     if (query.isError) return <span>{JSON.stringify(query.error)}</span>
     return (
         <div>
+            <hr />
             <Pagination
                 pagesCount={query.data.meta.pagesCount}
                 current={page}

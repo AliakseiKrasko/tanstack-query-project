@@ -5,11 +5,12 @@ type Props = {
     current: number
     pagesCount: number
     onChange: (page: number) => void
+    isFetching: boolean
 }
 
 const SIBLIND_COUNT = 10
 
-export const PaginationNav = ({ current, pagesCount, onChange }: Props) => {
+export const PaginationNav = ({ current, pagesCount, onChange, isFetching }: Props) => {
     const pages = getPaginationPages(current, pagesCount, SIBLIND_COUNT)
 
     return (
@@ -23,7 +24,7 @@ export const PaginationNav = ({ current, pagesCount, onChange }: Props) => {
                     <button
                         key={item}
                         className={item === current ? `${s.pageButton} ${s.pageButtonActive}` : s.pageButton}
-                        onClick={() => item !== current && onChange(Number(item))}
+                        onClick={() => !isFetching && item !== current && onChange(Number(item))}
                         disabled={item === current}
                         type="button"
                     >

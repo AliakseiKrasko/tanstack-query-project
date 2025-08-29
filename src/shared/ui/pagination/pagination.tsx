@@ -12,7 +12,7 @@ type Props = {
 export const Pagination = ({ current, pagesCount, changePageNumber, isFetching }: Props) => {
     return (
         <div className={s.container}>
-            <PaginationNav current={current} pagesCount={pagesCount} onChange={changePageNumber} /> {isFetching && '⌛'}
+            <PaginationNav current={current} pagesCount={pagesCount} onChange={changePageNumber} isFetching={isFetching} /> {isFetching && '⌛'}
         </div>
     )
 }
