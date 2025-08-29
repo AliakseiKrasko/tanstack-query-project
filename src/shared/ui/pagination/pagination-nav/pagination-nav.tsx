@@ -1,4 +1,5 @@
 import s from './pagination-nav.module.css'
+import {getPaginationPages} from "../utils/get-pagination-pages.ts";
 
 type Props = {
     current: number
@@ -9,7 +10,7 @@ type Props = {
 const SIBLIND_COUNT = 10
 
 export const PaginationNav = ({ current, pagesCount, onChange }: Props) => {
-    const pages = getPaginationPage(current, pagesCount, SIBLIND_COUNT)
+    const pages = getPaginationPages(current, pagesCount, SIBLIND_COUNT)
 
     return (
         <div>

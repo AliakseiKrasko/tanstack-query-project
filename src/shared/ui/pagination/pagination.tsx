@@ -1,10 +1,11 @@
 import s from './pagination.module.css'
+import {PaginationNav} from "./pagination-nav/pagination-nav.tsx";
 
 
 type Props = {
     current: number
     pagesCount: number
-    changePageNumber: number
+    changePageNumber: (page: number) => void
     isFetching: boolean
 }
 

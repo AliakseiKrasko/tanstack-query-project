@@ -4,9 +4,15 @@ export const PlayLists = () => {
     const [page, setPage] = useState(1);
 
     const query = useQuery({
-        queryKey: ['playlist'],
+        queryKey: ['playlist', page],
         queryFn: async () => {
-        const response = await client.GET('/playlists');
+        const response = await client.GET('/playlists', {
+            params: {
+                query: {
+                    pageNumber: page,
+                }
+            }
+        });
         if (response.error) {
             throw (response as unknown as {error: Error}).error;
         }
@@ -21,13 +27,15 @@ export const PlayLists = () => {
         <div>
             <Pagination
                 pagesCount={query.data.meta.pagesCount}
-                currentPage={page}
-                onPageNumberChange={setPage}
+                current={page}
+                changePageNumber={setPage}
                 isFetching={query.isFetching}
             />
             <ul>
                 {query.data.data.map((playlist) => (
-                    <li key={playlist.id}>{playlist.attributes.title}</li>
+                    <li key={playlist.id}>
+                        {playlist.attributes.title}
+                    </li>
                 ))}
             </ul>
         </div>
@@ -35,5 +43,5 @@ export const PlayLists = () => {
 }
 
 import {client} from "../shared/api/client.ts";
-import {Pagination} from "../shared/ui/pagination/utils/pagination.tsx";
+import {Pagination} from "../shared/ui/pagination/pagination.tsx";
 import {useState} from "react";
