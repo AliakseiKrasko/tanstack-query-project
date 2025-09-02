@@ -8,7 +8,8 @@ export const useMeQuery = () => {
         queryFn: async () => {
             const clientResponse = await client.GET('/auth/me')
             return clientResponse.data
-        }
+        },
+        retry: false
 
     })
 
