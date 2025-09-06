@@ -1,4 +1,4 @@
-import {LoginButton} from "./login-button.tsx";
+import {UseLoginMutation} from "../api/use-login-mutation.tsx";
 import {useMeQuery} from "../api/use-me.ts";
 import {CurrentUser} from "./current-user/current-user.tsx";
 
@@ -8,7 +8,7 @@ export const AccountBar = () => {
     if (query.isPending) return <></>
     return (
         <div>
-            {!query.data && <LoginButton/>}
+            {!query.data && <UseLoginMutation/>}
             {query.data && <CurrentUser/>}
         </div>
     )
