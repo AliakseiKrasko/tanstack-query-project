@@ -15,9 +15,10 @@ export const AddPlaylistForm = () => {
             })
             return response.data
         },
-        onError: () => {
+        onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['playlists'],
+                refetchType: 'all'
             })
         }
     });

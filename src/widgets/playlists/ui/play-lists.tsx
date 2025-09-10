@@ -47,7 +47,7 @@ export const PlayLists = ({userId}: Props) => {
             <ul>
                 {query.data.data.map((playlist) => (
                     <li key={playlist.id}>
-                        {playlist.attributes.title}
+                        {playlist.attributes.title} <DeletePlaylist playlistId={playlist.id} />
                     </li>
                 ))}
             </ul>
@@ -58,3 +58,4 @@ export const PlayLists = ({userId}: Props) => {
 import {client} from "../../../shared/api/client.ts";
 import {Pagination} from "../../../shared/ui/pagination/pagination.tsx";
 import {useState} from "react";
+import {DeletePlaylist} from "../../../features/playlists/delete-playlist/ui/delete-playlist.tsx";
