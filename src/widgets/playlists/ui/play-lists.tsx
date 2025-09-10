@@ -9,7 +9,7 @@ export const PlayLists = ({userId}: Props) => {
     const [search, setSearch] = useState("");
 
     const query = useQuery({
-        queryKey: ['playlist', {page, search, userId}],
+        queryKey: ['playlists', {page, search, userId}],
         queryFn: async ({ signal }) => {
         const response = await client.GET('/playlists', {
             params: {
@@ -55,6 +55,6 @@ export const PlayLists = ({userId}: Props) => {
     )
 }
 
-import {client} from "../shared/api/client.ts";
-import {Pagination} from "../shared/ui/pagination/pagination.tsx";
+import {client} from "../../../shared/api/client.ts";
+import {Pagination} from "../../../shared/ui/pagination/pagination.tsx";
 import {useState} from "react";

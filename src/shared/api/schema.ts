@@ -37,7 +37,7 @@ export interface paths {
          */
         get: operations["PlaylistsPublicController_getPlaylists"];
         put?: never;
-        /** Create a new playlist */
+        /** Create a new playlists */
         post: operations["PlaylistsController_createPlaylist"];
         delete?: never;
         options?: never;
@@ -52,12 +52,12 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get a single playlist by ID */
+        /** Get a single playlists by ID */
         get: operations["PlaylistsPublicController_getPlaylistById"];
-        /** Update a playlist */
+        /** Update a playlists */
         put: operations["PlaylistsController_updatePlaylist"];
         post?: never;
-        /** Delete a playlist */
+        /** Delete a playlists */
         delete: operations["PlaylistsController_deletePlaylist"];
         options?: never;
         head?: never;
@@ -91,11 +91,11 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Upload playlist cover
+         * Upload playlists cover
          * @description Minimum height — 500px; image must be square
          */
         post: operations["PlaylistsController_uploadMainImage"];
-        /** Delete playlist cover */
+        /** Delete playlists cover */
         delete: operations["PlaylistsController_deleteTrackCover"];
         options?: never;
         head?: never;
@@ -126,7 +126,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get list of tracks in a playlist */
+        /** Get list of tracks in a playlists */
         get: operations["TracksPublicController_getPlaylistTracks"];
         put?: never;
         post?: never;
@@ -215,7 +215,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Like a playlist */
+        /** Like a playlists */
         post: operations["PlaylistsPublicController_likePlaylist"];
         delete?: never;
         options?: never;
@@ -232,7 +232,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Dislike a playlist */
+        /** Dislike a playlists */
         post: operations["PlaylistsPublicController_dislikePlaylist"];
         delete?: never;
         options?: never;
@@ -250,7 +250,7 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        /** Remove user reaction from a playlist */
+        /** Remove user reaction from a playlists */
         delete: operations["PlaylistsPublicController_removePlaylistReaction"];
         options?: never;
         head?: never;
@@ -265,7 +265,7 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        /** Reorder tracks in a playlist */
+        /** Reorder tracks in a playlists */
         put: operations["TracksController_reorderTrack"];
         post?: never;
         delete?: never;
@@ -283,7 +283,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Add a track to your playlist */
+        /** Add a track to your playlists */
         post: operations["TracksController_addTrackToPlaylist"];
         delete?: never;
         options?: never;
@@ -301,7 +301,7 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        /** Remove a track from your playlist */
+        /** Remove a track from your playlists */
         delete: operations["TracksController_unbindTrackFromPlaylist"];
         options?: never;
         head?: never;
@@ -593,48 +593,48 @@ export interface components {
          */
         ReactionValue: 0 | 1 | -1;
         PlaylistAttributesDto: {
-            /** @description Title of the playlist */
+            /** @description Title of the playlists */
             title: string;
-            /** @description Description of the playlist */
+            /** @description Description of the playlists */
             description: string | null;
             /**
              * Format: date-time
-             * @description Date and time when the playlist was added (ISO 8601)
+             * @description Date and time when the playlists was added (ISO 8601)
              */
             addedAt: string;
             /**
              * Format: date-time
-             * @description Date and time when the playlist was last updated (ISO 8601)
+             * @description Date and time when the playlists was last updated (ISO 8601)
              */
             updatedAt: string;
-            /** @description Order index of the playlist */
+            /** @description Order index of the playlists */
             order: number;
-            /** @description User who created the playlist */
+            /** @description User who created the playlists */
             user: components["schemas"]["UserOutputDTO"];
-            /** @description Images associated with the playlist */
+            /** @description Images associated with the playlists */
             images: components["schemas"]["PlaylistImagesOutputDTO"];
-            /** @description Tags linked to the playlist */
+            /** @description Tags linked to the playlists */
             tags: components["schemas"]["GetTagOutput"][];
-            /** @description Total number of likes for this playlist */
+            /** @description Total number of likes for this playlists */
             likesCount: number;
-            /** @description Total number of dislikes for this playlist */
+            /** @description Total number of dislikes for this playlists */
             dislikesCount: number;
             /** @description User reaction: 0 – guest or no reaction; 1 – like; -1 – dislike */
             currentUserReaction: components["schemas"]["ReactionValue"];
         };
         PlaylistListItemJsonApiData: {
-            /** @description Unique identifier of the playlist */
+            /** @description Unique identifier of the playlists */
             id: string;
             /**
              * @description Resource type (should be "playlists")
              * @example playlists
              */
             type: string;
-            /** @description Attributes of the playlist resource */
+            /** @description Attributes of the playlists resource */
             attributes: components["schemas"]["PlaylistAttributesDto"];
         };
         GetMyPlaylistsOutput: {
-            /** @description Array of playlist resource objects owned by the current user */
+            /** @description Array of playlists resource objects owned by the current user */
             data: components["schemas"]["PlaylistListItemJsonApiData"][];
         };
         CreatePlaylistRequestPayload: {
@@ -644,37 +644,37 @@ export interface components {
             description: string | null;
         };
         PlaylistOutputAttributes: {
-            /** @description Title of the playlist */
+            /** @description Title of the playlists */
             title: string;
-            /** @description Description of the playlist */
+            /** @description Description of the playlists */
             description: string | null;
             /**
              * Format: date-time
-             * @description Date and time when the playlist was added (ISO 8601)
+             * @description Date and time when the playlists was added (ISO 8601)
              */
             addedAt: string;
             /**
              * Format: date-time
-             * @description Date and time when the playlist was last updated (ISO 8601)
+             * @description Date and time when the playlists was last updated (ISO 8601)
              */
             updatedAt: string;
-            /** @description Order index of the playlist */
+            /** @description Order index of the playlists */
             order: number;
-            /** @description User who created the playlist */
+            /** @description User who created the playlists */
             user: components["schemas"]["UserOutputDTO"];
-            /** @description Images associated with the playlist */
+            /** @description Images associated with the playlists */
             images: components["schemas"]["PlaylistImagesOutputDTO"];
-            /** @description Tags linked to the playlist */
+            /** @description Tags linked to the playlists */
             tags: components["schemas"]["GetTagOutput"][];
-            /** @description Total number of likes for this playlist */
+            /** @description Total number of likes for this playlists */
             likesCount: number;
-            /** @description Total number of dislikes for this playlist */
+            /** @description Total number of dislikes for this playlists */
             dislikesCount: number;
             /** @description User reaction: 0 – guest or no reaction; 1 – like; -1 – dislike */
             currentUserReaction: components["schemas"]["ReactionValue"];
         };
         PlaylistOutput: {
-            /** @description Unique identifier of the playlist */
+            /** @description Unique identifier of the playlists */
             id: string;
             /**
              * @description Resource type (should be "playlists")
@@ -693,16 +693,16 @@ export interface components {
             title: string;
             /**
              * @description Playlist description (up to 1000 characters)
-             * @example Cool playlist
+             * @example Cool playlists
              */
             description: string | null;
-            /** @description Tag IDs to associate with the playlist (0 – 5 items; [] = clear tags) */
+            /** @description Tag IDs to associate with the playlists (0 – 5 items; [] = clear tags) */
             tagIds: string[];
         };
         ReorderPlaylistsRequestPayload: {
             /**
              * Format: uuid
-             * @description ID of the playlist after which the current playlist should be inserted. Send null to place the playlist at the beginning of the list.
+             * @description ID of the playlists after which the current playlists should be inserted. Send null to place the playlists at the beginning of the list.
              */
             putAfterItemId: string | null;
         };
@@ -891,16 +891,16 @@ export interface components {
         PlaylistTrackAttributes: {
             /** @description Title of the track */
             title: string;
-            /** @description Order index of the track in the playlist */
+            /** @description Order index of the track in the playlists */
             order: number;
             /**
              * Format: date-time
-             * @description Date and time when the track was added to the playlist (ISO 8601)
+             * @description Date and time when the track was added to the playlists (ISO 8601)
              */
             addedAt: string;
             /**
              * Format: date-time
-             * @description Date and time when the track was last updated in the playlist (ISO 8601)
+             * @description Date and time when the track was last updated in the playlists (ISO 8601)
              */
             updatedAt: string;
             /** @description Attachments related to the track */
@@ -1034,7 +1034,7 @@ export interface components {
             sortDirection: "asc" | "desc";
             /** @description Filter by tag IDs. Multiple values allowed, e.g.: tagsIds=tag1&tagsIds=tag2 */
             tagsIds?: string[];
-            /** @description Filter by user ID (playlist creator’s ID) */
+            /** @description Filter by user ID (playlists creator’s ID) */
             userId?: string;
             /** @description Filter by track ID – only playlists containing this track will be returned */
             trackId?: string;
@@ -1046,7 +1046,7 @@ export interface components {
             pagesCount: number;
         };
         GetPlaylistsOutput: {
-            /** @description Array of playlist resource objects */
+            /** @description Array of playlists resource objects */
             data: components["schemas"]["PlaylistListItemJsonApiData"][];
             /** @description Pagination metadata for the playlists list */
             meta: components["schemas"]["JsonApiMetaWithPaging"];
@@ -1141,7 +1141,7 @@ export interface components {
             data: components["schemas"]["TrackOutput"];
         };
         AddTrackToPlaylistRequestPayload: {
-            /** @description ID of the track to add to the playlist */
+            /** @description ID of the track to add to the playlists */
             trackId: string;
         };
         CreateArtistRequestPayload: {
@@ -1298,7 +1298,7 @@ export interface operations {
                 sortDirection?: "asc" | "desc";
                 /** @description Filter by tag IDs. Multiple values allowed, e.g.: tagsIds=tag1&tagsIds=tag2 */
                 tagsIds?: string[];
-                /** @description Filter by user ID (playlist creator’s ID) */
+                /** @description Filter by user ID (playlists creator’s ID) */
                 userId?: string;
                 /** @description Filter by track ID – only playlists containing this track will be returned */
                 trackId?: string;
@@ -1356,7 +1356,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description ID of the playlist */
+                /** @description ID of the playlists */
                 playlistId: string;
             };
             cookie?: never;
@@ -1410,7 +1410,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Forbidden: You do not have permission to update this playlist */
+            /** @description Forbidden: You do not have permission to update this playlists */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -1437,7 +1437,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Forbidden: Insufficient permissions to delete this playlist */
+            /** @description Forbidden: Insufficient permissions to delete this playlists */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -1518,7 +1518,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Forbidden: No permission to upload cover for this playlist */
+            /** @description Forbidden: No permission to upload cover for this playlists */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -1545,7 +1545,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Forbidden: Removing another user’s playlist cover is not allowed */
+            /** @description Forbidden: Removing another user’s playlists cover is not allowed */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -1618,14 +1618,14 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description ID of the playlist to retrieve tracks for */
+                /** @description ID of the playlists to retrieve tracks for */
                 playlistId: string;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description OK: List of tracks in the playlist */
+            /** @description OK: List of tracks in the playlists */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -1711,7 +1711,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Not Found: Track or playlist not found */
+            /** @description Not Found: Track or playlists not found */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -1889,7 +1889,7 @@ export interface operations {
                     "application/json": components["schemas"]["ReactionOutput"];
                 };
             };
-            /** @description Bad Request: Invalid playlist ID */
+            /** @description Bad Request: Invalid playlists ID */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -1932,7 +1932,7 @@ export interface operations {
                     "application/json": components["schemas"]["ReactionOutput"];
                 };
             };
-            /** @description Bad Request: Invalid playlist ID */
+            /** @description Bad Request: Invalid playlists ID */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -2021,7 +2021,7 @@ export interface operations {
                 };
                 content?: never;
             };
-            /** @description Forbidden: No access to the playlist */
+            /** @description Forbidden: No access to the playlists */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -2052,14 +2052,14 @@ export interface operations {
             };
         };
         responses: {
-            /** @description No Content: Track added to the playlist successfully */
+            /** @description No Content: Track added to the playlists successfully */
             204: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Forbidden: No access to the playlist or track limit exceeded (max 10 tracks) */
+            /** @description Forbidden: No access to the playlists or track limit exceeded (max 10 tracks) */
             403: {
                 headers: {
                     [name: string]: unknown;
@@ -2087,14 +2087,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No Content: Track removed from the playlist */
+            /** @description No Content: Track removed from the playlists */
             204: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content?: never;
             };
-            /** @description Forbidden: No access to the playlist */
+            /** @description Forbidden: No access to the playlists */
             403: {
                 headers: {
                     [name: string]: unknown;
