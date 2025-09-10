@@ -48,6 +48,7 @@ const authMiddleware: Middleware = {
         if (accessToken) {
             request.headers.set("Authorization", `Bearer ${accessToken}`);
         }
+        // @ts-ignore
         request._retryRequest = request.clone()
         return request;
     },
@@ -58,6 +59,7 @@ const authMiddleware: Middleware = {
         }
         try {
             await makeRefreshToken()
+            // @ts-ignore
             const originalRequest: Request = request._retryRequest
             const retryRequest = new Request(originalRequest, { headers: new Headers(originalRequest.headers) })
             retryRequest.headers.set('Authorization', 'Bearer ' + localStorage.getItem('musicfun-access-token'))
