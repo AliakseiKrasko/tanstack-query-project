@@ -2,24 +2,29 @@ import {PlayLists} from "../widgets/playlists/ui/play-lists.tsx";
 import {useMeQuery} from "../features/auth/api/use-me.ts";
 import {Navigate} from "@tanstack/react-router";
 import {AddPlaylistForm} from "../features/playlists/add-playlist/ui/add-playlist-form.tsx";
+import {EditPlaylistForm} from "../features/playlists/edit-playlist/ui/edit-playlist-form.tsx";
+import {useState} from "react";
+
 
 function MyPlaylistsPage() {
-const {data, isPending} = useMeQuery()
+    const {data, isPending} = useMeQuery()
+    const [editingPlaylistId, setEditingPlaylistId] = useState<string | null>(null)
 
     if (isPending) {
         <div>Loading...</div>
     }
     if (!data) {
-        return <Navigate to="/" replace />
+        return <Navigate to="/" replace/>
     }
     return (
         <div>
             <h2>My Playlists</h2>
-            <hr />
-            <AddPlaylistForm />
-            <hr />
-            <PlayLists userId={data.userId} />
-
+            <hr/>
+            <AddPlaylistForm/>
+            <hr/>
+            <PlayLists userId={data.userId} onPlaylistSelected={setEditingPlaylistId} />
+            <hr/>
+            {editingPlaylistId && <EditPlaylistForm playlistId={editingPlaylistId}/>}
         </div>
     )
 }

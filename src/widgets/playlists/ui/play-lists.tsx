@@ -1,61 +1,58 @@
-import {keepPreviousData, useQuery} from "@tanstack/react-query";
+import { Pagination } from '../../../shared/ui/pagination/pagination.tsx'
+import { useState } from 'react'
+import { DeletePlaylist } from '../../../features/playlists/delete-playlist/ui/delete-playlist.tsx'
+import {usePlaylistsQuery} from "../api/use-playlist-query.ts/use-playlist-query.ts";
+
 
 type Props = {
-    userId?: string;
+    userId?: string
+    onPlaylistSelected?: (playlistId: string) => void
+    onPlaylistDeleted?: (playlistId: string) => void
+    isSearchActive?: boolean
 }
 
-export const PlayLists = ({userId}: Props) => {
-    const [page, setPage] = useState(1);
-    const [search, setSearch] = useState("");
+export const Playlists = ({ userId, onPlaylistSelected, onPlaylistDeleted, isSearchActive }: Props) => {
+    const [pageNumber, setPageNumber] = useState(1)
+    const [search, setSearch] = useState('')
 
-    const query = useQuery({
-        queryKey: ['playlists', {page, search, userId}],
-        queryFn: async ({ signal }) => {
-        const response = await client.GET('/playlists', {
-            params: {
-                query: {
-                    pageNumber: page,
-                    search,
-                    userId,
-                }
-            },
-            signal,
-        });
-        if (response.error) {
-            throw (response as unknown as {error: Error}).error;
-        }
-        return response.data;
-    },
-        placeholderData: keepPreviousData
-})
+    const query = usePlaylistsQuery(userId, { search, pageNumber })
 
+    const handleSelectPlaylistClick = (playlistId: string) => {
+        onPlaylistSelected?.(playlistId)
+    }
+
+    const handleDeletePlaylist = (playlistId: string) => {
+        onPlaylistDeleted?.(playlistId)
+    }
 
     if (query.isPending) return <span>Loading...</span>
-    if (query.isError) return <span>{JSON.stringify(query.error)}</span>
+    if (query.isError) return <span>Error: {JSON.stringify(query.error.message)}</span>
+
     return (
         <div>
-            <div>
-                <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search..."  />
-            </div>
-            <hr />
+            {isSearchActive && (
+                <>
+                    <div>
+                        <input value={search} onChange={(e) => setSearch(e.currentTarget.value)} placeholder={'search...'} />
+                    </div>
+                    <hr />
+                </>
+            )}
+
             <Pagination
                 pagesCount={query.data.meta.pagesCount}
-                current={page}
-                changePageNumber={setPage}
+                currentPage={pageNumber}
+                onPageNumberChange={setPageNumber}
                 isFetching={query.isFetching}
             />
             <ul>
                 {query.data.data.map((playlist) => (
                     <li key={playlist.id}>
-                        {playlist.attributes.title} <DeletePlaylist playlistId={playlist.id} />
+                        <span onClick={() => handleSelectPlaylistClick(playlist.id)}>{playlist.attributes.title}</span>{' '}
+                        <DeletePlaylist playlistId={playlist.id} onDeleted={handleDeletePlaylist} />
                     </li>
                 ))}
             </ul>
         </div>
     )
 }
-
-import {client} from "../../../shared/api/client.ts";
-import {Pagination} from "../../../shared/ui/pagination/pagination.tsx";
-import {useState} from "react";
-import {DeletePlaylist} from "../../../features/playlists/delete-playlist/ui/delete-playlist.tsx";
