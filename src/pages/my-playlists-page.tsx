@@ -1,9 +1,9 @@
-import {PlayLists} from "../widgets/playlists/ui/play-lists.tsx";
 import {useMeQuery} from "../features/auth/api/use-me.ts";
 import {Navigate} from "@tanstack/react-router";
 import {AddPlaylistForm} from "../features/playlists/add-playlist/ui/add-playlist-form.tsx";
 import {EditPlaylistForm} from "../features/playlists/edit-playlist/ui/edit-playlist-form.tsx";
 import {useState} from "react";
+import {Playlists} from "../widgets/playlists/ui/play-lists.tsx";
 
 
 function MyPlaylistsPage() {
@@ -22,7 +22,7 @@ function MyPlaylistsPage() {
             <hr/>
             <AddPlaylistForm/>
             <hr/>
-            <PlayLists userId={data.userId} onPlaylistSelected={setEditingPlaylistId} />
+            <Playlists userId={data.userId} onPlaylistSelected={setEditingPlaylistId} />
             <hr/>
             {editingPlaylistId && <EditPlaylistForm playlistId={editingPlaylistId}/>}
         </div>
